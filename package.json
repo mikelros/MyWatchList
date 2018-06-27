@@ -3,17 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "1.14.0",
+    "babel-eslint": "^8.2.5",
+    "eslint": "^5.0.0",
+    "eslint-plugin-jest": "^21.17.0",
+    "eslint-plugin-react": "^7.10.0",
+    "husky": "^0.14.3",
     "jest-expo": "~27.0.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.5",
+    "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry-web.js",
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "jest"
+    "test": "jest",
+    "precommit": "lint-staged && yarn test"
   },
   "jest": {
     "preset": "jest-expo"
@@ -22,5 +30,16 @@
     "expo": "^27.0.1",
     "react": "16.3.1",
     "react-native": "~0.55.2"
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,md}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.{scss,css}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
